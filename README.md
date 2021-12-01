@@ -1,6 +1,8 @@
 # First_Project
 
 SET serveroutput ON;
+
+
 DECLARE
 
     -----declare weak cursor definition to hold work details
