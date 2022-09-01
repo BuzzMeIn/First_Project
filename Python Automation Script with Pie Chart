@@ -1,0 +1,24 @@
+import pandas as pd
+import plotly.express as px
+
+
+#Everytime your work some that looks like a table, import pandas
+#plotly.express is for dat visualization
+#read excel for excel, if it was a CSV file we'd use read_csv
+
+excel_book1_price ="C:/Users/wealt/Desktop/Prices.xlsx"
+excel_book2_homeA ="C:/Users/wealt/Desktop/PurchaseHomeA.xlsx"
+
+df_prices = pd.read_excel(excel_book1_price)
+df_homeA = pd.read_excel( excel_book2_homeA)
+
+print(df_prices, df_homeA)
+
+
+df_total = df_homeA.merge(df_prices, on ='ID')
+df_total['Total price'] = df_total['PURCHASED AMOUNT'] * df_total['Price']
+
+#print(df_total)
+
+fig = px.pie(df_total[['MATERIAL', 'Total price']], values='Total price', names='MATERIAL')
+fig.show()
